@@ -35,7 +35,7 @@ Citizen.CreateThread(function()
                                 SetNuiFocus(true, true)
                                 SendNUIMessage({
                                     action = "openShop",
-                                    items = shop.items
+                                    items = GetStoreItems(shop.items)
                                 })
                             end
                         end
@@ -60,6 +60,14 @@ function DrawShopMarker(location)
         marker.color.r, marker.color.g, marker.color.b, marker.color.a,
         false, true, 2, false, nil, nil, false
     )
+end
+
+function GetStoreItems(items)
+    local filtered = {}
+    for _, item in pairs(items) do
+        table.insert(filtered, item)
+    end
+    return filtered
 end
 
 RegisterNUICallback('buyBasket', function(data, cb)
