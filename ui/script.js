@@ -13,22 +13,26 @@ window.addEventListener('message', function (event) {
     updateCart();
 
     data.items.forEach(item => {
-      const isWeapon = item.isWeapon === true || item.isWeapon === "true";
       const div = document.createElement('div');
       div.className = 'shop-item';
 
       div.innerHTML = `
-        <div>
-            <div class="label">${item.label}</div>
-            <div class="price">${item.price} €</div>
-        </div>
-        <div style="display: flex; gap: 10px; align-items: center;">
-            ${!isWeapon ? `<input type="number" min="1" max="100" value="1" class="item-qty" data-name="${item.name}" data-price="${item.price}" data-label="${item.label}">` : ''}
-            <button class="add-to-basket" data-name="${item.name}" data-isweapon="${isWeapon}" data-price="${item.price}" data-label="${item.label}">Hinzufügen</button>
-        </div>
-      `;
+    <div>
+        <div class="label">${item.label}</div>
+        <div class="price">${item.price} €</div>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: center;">
+        <input type="number" min="1" max="${item.buyLimit}" value="1" class="item-qty" data-name="${item.name}" data-price="${item.price}" data-label="${item.label}">
+        <button class="add-to-basket" 
+                data-name="${item.name}" 
+                data-price="${item.price}" 
+                data-label="${item.label}"
+                data-buy-limit="${item.buyLimit}">Hinzufügen</button>
+    </div>
+  `;
       itemsWrapper.appendChild(div);
     });
+
   }
 });
 
@@ -63,28 +67,23 @@ document.addEventListener('click', function (e) {
     const name = e.target.dataset.name;
     const label = e.target.dataset.label;
     const price = parseInt(e.target.dataset.price);
-    const isWeapon = e.target.dataset.isweapon === 'true';
+    const buyLimit = parseInt(e.target.dataset.buyLimit);
 
     const qtyInput = document.querySelector(`.item-qty[data-name="${name}"]`);
-    let qty = isWeapon ? 1 : parseInt(qtyInput?.value) || 1;
+    let qty = parseInt(qtyInput?.value) || 1;
 
     const existing = basket.find(b => b.name === name);
 
-    if (isWeapon && existing) {
-      emitNotification("Du hast diese Waffe bereits im Warenkorb.");
-      return;
-    }
-
-    if (!isWeapon && existing) {
-      if (existing.count + qty > 100) {
-        emitNotification("Du kannst maximal 100 Stück von diesem Artikel kaufen.");
+    if (existing) {
+      if (existing.count + qty > buyLimit) {
+        emitNotification("Du kannst maximal " + buyLimit + " Stück von diesem Artikel kaufen.");
         return;
       }
       existing.count += qty;
     } else {
-      if (qty > 100) {
-        qty = 100;
-        emitNotification("Maximal 100 Stück erlaubt. Menge wurde angepasst.");
+      if (qty > buyLimit) {
+        qty = buyLimit;
+        emitNotification("Maximal " + buyLimit + " Stück erlaubt. Menge wurde angepasst.");
       }
       basket.push({ name, label, price, count: qty });
     }
