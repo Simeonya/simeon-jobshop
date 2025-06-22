@@ -13,30 +13,30 @@ Config = {
             items = {
                 {
                     name = "WEAPON_CARBINERIFLE", -- Item name
-                    label = "Karabiner",          -- Item Label
-                    amount = 5,                   -- Amount given per purchase
+                    label = "HK415",              -- Item Label
+                    amount = 1,                   -- Amount given per purchase
                     price = 3000,                 -- Price of the item
                     minGrade = 1,                 -- Minimum job grade required
                     specifiedGradesOnly = {},     -- Only these grades can access (overrides minGrade if not empty)
-                    isWeapon = true               -- Is the item a weapon
+                    buyLimit = 1,                 -- Max buy per purchase
                 },
                 {
                     name = "WEAPON_SMG",      -- Item name
-                    label = "SMG",            -- Item Label
-                    amount = 5,               -- Amount given per purchase
+                    label = "HK MP5",         -- Item Label
+                    amount = 1,               -- Amount given per purchase
                     price = 2500,             -- Price of the item
                     minGrade = 1,             -- Minimum job grade required
                     specifiedGradesOnly = {}, -- Only these grades can access (overrides minGrade if not empty)
-                    isWeapon = true           -- Is the item a weapon
+                    buyLimit = 1,             -- Max buy per purchase
                 },
                 {
                     name = "WEAPON_COMBATPISTOL", -- Item name
-                    label = "Kampfpistole",       -- Item Label
+                    label = "P99",                -- Item Label
                     amount = 1,                   -- Amount given per purchase
                     price = 800,                  -- Price of the item
                     minGrade = 1,                 -- Minimum job grade required
                     specifiedGradesOnly = {},     -- Only these grades can access (overrides minGrade if not empty)
-                    isWeapon = true               -- Is the item a weapon
+                    buyLimit = 1,                 -- Max buy per purchase
                 },
                 {
                     name = "WEAPON_NIGHTSTICK", -- Item name
@@ -45,7 +45,7 @@ Config = {
                     price = 250,                -- Price of the item
                     minGrade = 1,               -- Minimum job grade required
                     specifiedGradesOnly = {},   -- Only these grades can access (overrides minGrade if not empty)
-                    isWeapon = true             -- Is the item a weapon
+                    buyLimit = 1,               -- Max buy per purchase
                 },
                 {
                     name = "WEAPON_FLASHLIGHT", -- Item name
@@ -54,7 +54,7 @@ Config = {
                     price = 150,                -- Price of the item
                     minGrade = 1,               -- Minimum job grade required
                     specifiedGradesOnly = {},   -- Only these grades can access (overrides minGrade if not empty)
-                    isWeapon = true             -- Is the item a weapon
+                    buyLimit = 1,               -- Max buy per purchase
                 },
                 {
                     name = "WEAPON_PEPPERSPRAY", -- Item name
@@ -63,7 +63,7 @@ Config = {
                     price = 99,                  -- Price of the item
                     minGrade = 0,                -- Minimum job grade required
                     specifiedGradesOnly = {},    -- Only these grades can access (overrides minGrade if not empty)
-                    isWeapon = true              -- Is the item a weapon
+                    buyLimit = 1,                -- Max buy per purchase
                 },
                 {
                     name = "WEAPON_ANTIDOTE", -- Item name
@@ -72,25 +72,34 @@ Config = {
                     price = 29,               -- Price of the item
                     minGrade = 0,             -- Minimum job grade required
                     specifiedGradesOnly = {}, -- Only these grades can access (overrides minGrade if not empty)
-                    isWeapon = true           -- Is the item a weapon
+                    buyLimit = 1,             -- Max buy per purchase
                 },
                 {
-                    name = "GADGET_PARACHUTE", -- Item name
-                    label = "Falschirm",       -- Item Label
-                    amount = 1,                -- Amount given per purchase
-                    price = 800,               -- Price of the item
-                    minGrade = 0,              -- Minimum job grade required
-                    specifiedGradesOnly = {},  -- Only these grades can access (overrides minGrade if not empty)
-                    isWeapon = true            -- Is the item a weapon
-                },
-                {
-                    name = "magazin",         -- Item name
-                    label = "Magazin",        -- Item Label
+                    name = "PARACHUTE",       -- Item name
+                    label = "Falschirm",      -- Item Label
                     amount = 1,               -- Amount given per purchase
+                    price = 800,              -- Price of the item
+                    minGrade = 0,             -- Minimum job grade required
+                    specifiedGradesOnly = {}, -- Only these grades can access (overrides minGrade if not empty)
+                    buyLimit = 1,             -- Max buy per purchase
+                },
+                {
+                    name = "ammo-9",          -- Item name
+                    label = "9mm",            -- Item Label
+                    amount = 5,               -- Amount given per purchase
                     price = 20,               -- Price of the item
                     minGrade = 1,             -- Minimum job grade required
                     specifiedGradesOnly = {}, -- Only these grades can access (overrides minGrade if not empty)
-                    isWeapon = false          -- Is the item a weapon
+                    buyLimit = 1000,          -- Max buy per purchase
+                },
+                {
+                    name = "ammo-rifle",      -- Item name
+                    label = "5.56X45",        -- Item Label
+                    amount = 5,               -- Amount given per purchase
+                    price = 20,               -- Price of the item
+                    minGrade = 1,             -- Minimum job grade required
+                    specifiedGradesOnly = {}, -- Only these grades can access (overrides minGrade if not empty)
+                    buyLimit = 1000,          -- Max buy per purchase
                 },
                 {
                     name = "armor",           -- Item name
@@ -99,7 +108,7 @@ Config = {
                     price = 20,               -- Price of the item
                     minGrade = 1,             -- Minimum job grade required
                     specifiedGradesOnly = {}, -- Only these grades can access (overrides minGrade if not empty)
-                    isWeapon = false          -- Is the item a weapon
+                    buyLimit = 10,            -- Max buy per purchase
                 },
             }
         }
