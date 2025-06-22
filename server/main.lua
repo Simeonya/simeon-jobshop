@@ -20,15 +20,6 @@ AddEventHandler('simeon:jobshop:server:buyBasket', function(data)
             return
         end
 
-        if item.isWeapon then
-            for _, w in pairs(xPlayer.getLoadout()) do
-                if w.name == item.name then
-                    TriggerClientEvent('esx:showNotification', source, string.format(Translation.alreadyHave, item.label))
-                    return
-                end
-            end
-        end
-
         local totalPrice = item.price * basketItem.count
         if not HasEnoughMoney(xPlayer, totalPrice) then
             TriggerClientEvent('esx:showNotification', source, Translation.notEnoughMoney)
@@ -37,20 +28,14 @@ AddEventHandler('simeon:jobshop:server:buyBasket', function(data)
 
         if not CanPlayerCarryItem(xPlayer, {
             name = item.name,
-            amount = basketItem.count,
-            isWeapon = item.isWeapon
+            amount = basketItem.count
         }) then
             TriggerClientEvent('esx:showNotification', source, Translation.notEnoughSpace)
             return
         end
 
         xPlayer.removeMoney(totalPrice)
-
-        if item.isWeapon then
-            xPlayer.addWeapon(item.name, item.ammo or 0)
-        else
-            xPlayer.addInventoryItem(item.name, basketItem.count)
-        end
+        xPlayer.addInventoryItem(item.name, basketItem.count)
     end
 
     TriggerClientEvent('esx:showNotification', source, "Einkauf abgeschlossen.")
@@ -82,31 +67,11 @@ function CanPlayerBuyItem(xPlayer, item)
     return xPlayer.getJob().grade >= item.minGrade
 end
 
-function GetItemRestrictionMessage(xPlayer, item)
-    if #item.specifiedGradesOnly > 0 then
-        return Translation.onlyWithGrad
-    elseif item.minGrade then
-        return string.format(Translation.onlySinceGrade, item.minGrade)
-    end
-    return nil
-end
-
 function CanPlayerCarryItem(xPlayer, item)
-    if item.isWeapon then
-        for _, w in pairs(xPlayer.getLoadout()) do
-            if w.name == item.name then
-                TriggerClientEvent('esx:showNotification', xPlayer.source,
-                    string.format(Translation.alreadyHave, item.label))
-                return false
-            end
-        end
-        return xPlayer.getWeight() < xPlayer.getMaxWeight()
-    else
-        if xPlayer.canCarryItem then
-            return xPlayer.canCarryItem(item.name, item.amount)
-        end
-        return true
+    if xPlayer.canCarryItem then
+        return xPlayer.canCarryItem(item.name, item.amount)
     end
+    return true
 end
 
 function HasEnoughMoney(xPlayer, price)
