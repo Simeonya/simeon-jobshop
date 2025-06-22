@@ -18,6 +18,7 @@ Config = {
                     price = 3000,                 -- Price of the item
                     minGrade = 1,                 -- Minimum job grade required
                     specifiedGradesOnly = {},     -- Only these grades can access (overrides minGrade if not empty)
+                    isWeapon = true               -- Is the item a weapon
                 },
                 {
                     name = "WEAPON_SMG",      -- Item name
@@ -26,6 +27,7 @@ Config = {
                     price = 2500,             -- Price of the item
                     minGrade = 1,             -- Minimum job grade required
                     specifiedGradesOnly = {}, -- Only these grades can access (overrides minGrade if not empty)
+                    isWeapon = true           -- Is the item a weapon
                 },
                 {
                     name = "WEAPON_COMBATPISTOL", -- Item name
@@ -34,6 +36,7 @@ Config = {
                     price = 800,                  -- Price of the item
                     minGrade = 1,                 -- Minimum job grade required
                     specifiedGradesOnly = {},     -- Only these grades can access (overrides minGrade if not empty)
+                    isWeapon = true               -- Is the item a weapon
                 },
                 {
                     name = "WEAPON_NIGHTSTICK", -- Item name
@@ -42,6 +45,7 @@ Config = {
                     price = 250,                -- Price of the item
                     minGrade = 1,               -- Minimum job grade required
                     specifiedGradesOnly = {},   -- Only these grades can access (overrides minGrade if not empty)
+                    isWeapon = true             -- Is the item a weapon
                 },
                 {
                     name = "WEAPON_FLASHLIGHT", -- Item name
@@ -50,6 +54,7 @@ Config = {
                     price = 150,                -- Price of the item
                     minGrade = 1,               -- Minimum job grade required
                     specifiedGradesOnly = {},   -- Only these grades can access (overrides minGrade if not empty)
+                    isWeapon = true             -- Is the item a weapon
                 },
                 {
                     name = "WEAPON_PEPPERSPRAY", -- Item name
@@ -58,6 +63,7 @@ Config = {
                     price = 99,                  -- Price of the item
                     minGrade = 0,                -- Minimum job grade required
                     specifiedGradesOnly = {},    -- Only these grades can access (overrides minGrade if not empty)
+                    isWeapon = true              -- Is the item a weapon
                 },
                 {
                     name = "WEAPON_ANTIDOTE", -- Item name
@@ -66,6 +72,7 @@ Config = {
                     price = 29,               -- Price of the item
                     minGrade = 0,             -- Minimum job grade required
                     specifiedGradesOnly = {}, -- Only these grades can access (overrides minGrade if not empty)
+                    isWeapon = true           -- Is the item a weapon
                 },
                 {
                     name = "GADGET_PARACHUTE", -- Item name
@@ -74,6 +81,7 @@ Config = {
                     price = 800,               -- Price of the item
                     minGrade = 0,              -- Minimum job grade required
                     specifiedGradesOnly = {},  -- Only these grades can access (overrides minGrade if not empty)
+                    isWeapon = true            -- Is the item a weapon
                 },
                 {
                     name = "magazin",         -- Item name
@@ -82,6 +90,7 @@ Config = {
                     price = 20,               -- Price of the item
                     minGrade = 1,             -- Minimum job grade required
                     specifiedGradesOnly = {}, -- Only these grades can access (overrides minGrade if not empty)
+                    isWeapon = false          -- Is the item a weapon
                 },
                 {
                     name = "armor",           -- Item name
@@ -90,6 +99,7 @@ Config = {
                     price = 20,               -- Price of the item
                     minGrade = 1,             -- Minimum job grade required
                     specifiedGradesOnly = {}, -- Only these grades can access (overrides minGrade if not empty)
+                    isWeapon = false          -- Is the item a weapon
                 },
             }
         }

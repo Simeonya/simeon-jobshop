@@ -13,6 +13,7 @@ window.addEventListener('message', function (event) {
     updateCart();
 
     data.items.forEach(item => {
+      const isWeapon = item.isWeapon === true || item.isWeapon === "true";
       const div = document.createElement('div');
       div.className = 'shop-item';
 
@@ -22,8 +23,8 @@ window.addEventListener('message', function (event) {
             <div class="price">${item.price} €</div>
         </div>
         <div style="display: flex; gap: 10px; align-items: center;">
-            <input type="number" min="1" max="100" value="1" class="item-qty" data-name="${item.name}" data-price="${item.price}" data-label="${item.label}">
-            <button class="add-to-basket" data-name="${item.name}" data-price="${item.price}" data-label="${item.label}">Hinzufügen</button>
+            ${!isWeapon ? `<input type="number" min="1" max="100" value="1" class="item-qty" data-name="${item.name}" data-price="${item.price}" data-label="${item.label}">` : ''}
+            <button class="add-to-basket" data-name="${item.name}" data-isweapon="${isWeapon}" data-price="${item.price}" data-label="${item.label}">Hinzufügen</button>
         </div>
       `;
       itemsWrapper.appendChild(div);
@@ -62,13 +63,19 @@ document.addEventListener('click', function (e) {
     const name = e.target.dataset.name;
     const label = e.target.dataset.label;
     const price = parseInt(e.target.dataset.price);
+    const isWeapon = e.target.dataset.isweapon === 'true';
 
     const qtyInput = document.querySelector(`.item-qty[data-name="${name}"]`);
-    let qty = parseInt(qtyInput?.value) || 1;
+    let qty = isWeapon ? 1 : parseInt(qtyInput?.value) || 1;
 
     const existing = basket.find(b => b.name === name);
 
-    if (existing) {
+    if (isWeapon && existing) {
+      emitNotification("Du hast diese Waffe bereits im Warenkorb.");
+      return;
+    }
+
+    if (!isWeapon && existing) {
       if (existing.count + qty > 100) {
         emitNotification("Du kannst maximal 100 Stück von diesem Artikel kaufen.");
         return;
